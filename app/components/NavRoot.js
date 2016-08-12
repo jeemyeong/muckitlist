@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Home from './Home'
 import DetailPage from './DetailPage'
-import ReAbout from './ReAbout'
+import WritePost from './WritePost'
 
 import {
   BackAndroid,
@@ -34,8 +34,8 @@ class NavRoot extends Component {
       return <DetailPage _handleNavigate={this._handleNavigate.bind(this)}  
                     _goBack={this._handleBackAction.bind(this)}/>
     }
-    if (route.key === 'reabout') {
-      return <ReAbout _goBack={this._handleBackAction.bind(this)} />
+    if (route.key === 'writepost') {
+      return <WritePost _goBack={this._handleBackAction.bind(this)} />
     }
   }
   _handleBackAction () {

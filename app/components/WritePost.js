@@ -8,11 +8,11 @@ import {
 } from 'react-native'
 
 
-const ReAbout = ({_goBack}) => (
+const WritePost = ({_goBack}) => (
   <View style={styles.container}>
-    <Text style={styles.title}>Rebout</Text>
+    <Text style={styles.title}>WritePost</Text>
     <TouchableOpacity onPress={_goBack}>
-      <Image source={{uri: "https://jeemyeongrails.s3.amazonaws.com/uploads/food/image/1/tokkijung.png"}} 
+      <Image source={{uri: "http://www.keybiscaynesoccerclub.com/imgs/Left%20arrow.jpg"}} 
              style={{width: 175,height: 175}}
              />
     </TouchableOpacity>
@@ -26,8 +26,11 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   },
   container: {
-    paddingTop: 60
+    paddingTop: 60,
+    backgroundColor: '#FFFFFF',
+    flex: 1,
+
   }
 })
 
-export default ReAbout
+export default WritePost
