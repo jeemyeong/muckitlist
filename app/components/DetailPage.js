@@ -37,8 +37,8 @@ const DetailPage = ({_handleNavigate, _goBack}) => (
       </TouchableOpacity>
     </View>
     <Swiper style={styles.wrapper} height={240} loop={true} autoplay={true}
-        dot={<View style={{backgroundColor:'rgba(255,255,255,.3)', width: 13, height: 13,borderRadius: 7, marginLeft: 7, marginRight: 7,}} />}
-        activeDot={<View style={{backgroundColor: '#fff', width: 13, height: 13, borderRadius: 7, marginLeft: 7, marginRight: 7}} />}
+        dot={<View style={{backgroundColor:'rgba(255,255,255,.3)', width: 8, height: 8,borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3,}} />}
+        activeDot={<View style={{backgroundColor: '#fff', width: 8, height: 8, borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3,}} />}
         >
       <View style={styles.slide} title={<Text numberOfLines={1}>Aussie tourist dies at Bali hotel</Text>}>
         <Image style={styles.image} source={{uri: 'https://jeemyeongrails.s3.amazonaws.com/uploads/food/image/1/tokkijung.png'}} />
@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
   },
   title: {
     color: "#fc2b31",
-    fontSize: 40,
+    fontSize: 35,
   },
     wrapper: {
   },
