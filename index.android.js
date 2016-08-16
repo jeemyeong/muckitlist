@@ -7,9 +7,11 @@ const store = configureStore()
 import NavigationRootContainer from './app/containers/navRootContainer'
 import { Provider } from 'react-redux'
 
+
 const App = () => (
   <Provider store={store}>
     <NavigationRootContainer />
+
   </Provider>
 )
 AppRegistry.registerComponent('muckitlist', () => App)

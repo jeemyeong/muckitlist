@@ -11,8 +11,8 @@ import MainNavBar from './main/mainNavBar.js'
 import MainItem from './main/mainItem.js'
 import MainInfo from './main/mainInfo.js'
 import MainReturnButton from './main/mainReturnButton.js'
-
-const route = {
+import Tinder from './main/Tinder.js'
+const detailPage = {
   type: 'push',
   route: {
     key: 'detailpage',
@@ -20,16 +20,17 @@ const route = {
   }
 }
 
-const Home = ({_handleNavigate}) => (
+const Home = ({_handleNavigate, data}) => (
   <View style={styles.container}>
     <MainNavBar />
-    <TouchableOpacity onPress={() => _handleNavigate(route)}>
-      <MainItem mainItemImg="https://jeemyeongrails.s3.amazonaws.com/uploads/food/image/1/tokkijung.png"/>
+    <Tinder style={{flex: 1}} />
+    <TouchableOpacity onPress={() => _handleNavigate(detailPage)}>
+      <MainItem mainItemImg={data[0].image.image.url} style={{flex: 1}} />
     </TouchableOpacity>
     <MainInfo 
-      mainItemTitle = {"토끼정"}
-      mainItemCategory = {"일식"}
-      mainItemLocation = {"강남"}
+      mainItemTitle = {data[0].restaurant}
+      mainItemCategory = {data[0].category}
+      mainItemLocation = {data[0].loca_simple}
       mainItemRating = "3.8"
     />
     <MainReturnButton />

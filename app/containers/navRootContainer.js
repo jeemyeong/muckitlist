@@ -1,19 +1,19 @@
 import { connect } from 'react-redux'
-import NavigationRoot from '../components/NavRoot'
+import NavRoot from '../components/NavRoot'
 import { push, pop } from '../actions/navActions'
 function mapStateToProps (state) {
+  console.log(state)
   return {
-    navigation: state.navReducer
+    navigation: state.navReducer,
+    data: state.foodReducer.data,
+    status: state.foodReducer.status,
+    loaded: state.foodReducer.loaded
   }
 }
 
 export default connect(
   mapStateToProps,
-  {
-    pushRoute: (route) => push(route),
-    popRoute: () => pop()
-  }
-)(NavigationRoot)
+)(NavRoot)
 
 // function mapDispatchToProps (dispatch) {
 //   return {

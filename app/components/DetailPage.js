@@ -40,16 +40,16 @@ const DetailPage = ({_handleNavigate, _goBack}) => (
         dot={<View style={{backgroundColor:'rgba(255,255,255,.3)', width: 8, height: 8,borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3,}} />}
         activeDot={<View style={{backgroundColor: '#fff', width: 8, height: 8, borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3,}} />}
         >
-      <View style={styles.slide} title={<Text numberOfLines={1}>Aussie tourist dies at Bali hotel</Text>}>
+      <View style={styles.slide} >
         <Image style={styles.image} source={{uri: 'https://jeemyeongrails.s3.amazonaws.com/uploads/food/image/1/tokkijung.png'}} />
       </View>
-      <View style={styles.slide} title={<Text numberOfLines={1}>Big lie behind Nine’s new show</Text>}>
-        <Image style={styles.image} source={{uri: 'https://jeemyeongrails.s3.amazonaws.com/uploads/food/image/2/lebrun.PNG'}} />
+      <View style={styles.slide} >
+        <Image style={styles.image} source={{uri: 'https://jeemyeongrails.s3.amazonaws.com/uploads/food/image/5/ddeok.PNG'}} />
       </View>
-      <View style={styles.slide} title={<Text numberOfLines={1}>Why Stone split from Garfield</Text>}>
+      <View style={styles.slide} >
         <Image style={styles.image} source={{uri: 'https://jeemyeongrails.s3.amazonaws.com/uploads/food/image/3/2_sannakji.PNG'}} />
       </View>
-      <View style={styles.slide} title={<Text numberOfLines={1}>Learn from Kim K to land that job</Text>}>
+      <View style={styles.slide} >
         <Image style={styles.image} source={{uri: 'https://jeemyeongrails.s3.amazonaws.com/uploads/food/image/4/1_pizza.PNG'}} />
       </View>
     </Swiper>
