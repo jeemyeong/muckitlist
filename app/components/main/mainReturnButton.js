@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
   returnView: {
     height: 100,
     width: 100,
-    backgroundColor: 'white',
+    backgroundColor: 'transparent',
     marginLeft: 30,
     marginTop: 30,
   },

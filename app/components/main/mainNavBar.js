@@ -23,7 +23,7 @@ const mainNavBar = () => (
 const styles = StyleSheet.create({
   navBar: {
     height: 60,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: 'transparent',
     justifyContent: 'center',
     alignItems: 'center',
     paddingTop: 10,
