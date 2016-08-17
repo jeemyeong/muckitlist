@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Home from './Home'
 import DetailPage from './DetailPage'
 import WritePost from './WritePost'
+import MyList from './MyList'
 import { push, pop } from '../actions/navActions'
 import {bindActionCreators} from 'redux';  
 import * as foodActions from '../actions/foodActions';  
@@ -48,11 +49,16 @@ class NavRoot extends Component {
     }
     if (route.key ===  'detailpage') {
       return <DetailPage _handleNavigate={this._handleNavigate.bind(this)}  
-                    _goBack={this._handleBackAction.bind(this)}/>
+                         _goBack={this._handleBackAction.bind(this)}/>
     }
     if (route.key === 'writepost') {
       return <WritePost _goBack={this._handleBackAction.bind(this)}
                         data={this.props.data} />
+    }
+    if (route.key === 'mylist') {
+      return <MyList _handleNavigate={this._handleNavigate.bind(this)}  
+                     _goBack={this._handleBackAction.bind(this)}
+                     data={this.props.data} />
     }
   }
   _handleBackAction () {

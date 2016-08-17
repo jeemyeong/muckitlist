@@ -8,10 +8,7 @@ import {
 } from 'react-native'
 import Swiper from 'react-native-swiper'
 
-import MainNavBar from './main/mainNavBar.js'
 import MainItem from './main/mainItem.js'
-import MainInfo from './main/mainInfo.js'
-import MainReturnButton from './main/mainReturnButton.js'
 
 const writepost = {
   type: 'push',

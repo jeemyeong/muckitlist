@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import SwipeCards from 'react-native-swipe-cards';
 
-const detailPage = {
+const detailPageRoute = {
   type: 'push',
   route: {
     key: 'detailpage',
@@ -21,8 +21,7 @@ let Card = React.createClass({
   render() {
     return (
       <View style={styles.card}>
-        <TouchableOpacity onPress={() => this.props._handleNavigate(detailPage)}>
-
+        <TouchableOpacity onPress={() => this.props._handleNavigate(detailPageRoute)}>
           <Image style={styles.thumbnail} source={{uri: this.props.image}} />
         </TouchableOpacity>
       </View>
