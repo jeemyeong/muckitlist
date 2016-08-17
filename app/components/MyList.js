@@ -8,6 +8,7 @@ import {
   ListView,
 } from 'react-native'
 import Swiper from 'react-native-swiper'
+import ScrollableTabView, {DefaultTabBar, }  from 'react-native-scrollable-tab-view';
 
 const writepost = {
   type: 'push',
@@ -36,14 +37,22 @@ const MyList = ({_handleNavigate, _goBack, data}) => (
                />
       </TouchableOpacity>
     </View>
-    <ListView
-      contentContainerStyle={styles.list}
-      dataSource={dataSource.cloneWithRows(data)}
-      renderRow={(rowData) => 
-        <Image style={styles.item} 
-               source={{uri: rowData.image.image.url}}/>
-      }
-    />
+    <ScrollableTabView style={{marginTop: 20, }}
+                       renderTabBar={() => <DefaultTabBar />}
+                       tabBarUnderlineColor='#fc2b31'
+                       tabBarActiveTextColor='#fc2b31'
+                       tabBarInactiveTextColor='#ccc'>
+      <View tabLabel='지역별'>
+        <ListView
+          contentContainerStyle={styles.list}
+          dataSource={dataSource.cloneWithRows(data)}
+          renderRow={(rowData) => <Image style={styles.item} 
+                                         source={{uri: rowData.image.image.url}}/>}
+        />
+      </View>
+      <View tabLabel='북마크'>
+      </View>
+    </ScrollableTabView>
   </View>
 )
 
