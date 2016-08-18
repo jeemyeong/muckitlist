@@ -90,7 +90,7 @@ class NavRoot extends Component {
         navigationState={this.props.navigation}
         onNavigate={this._handleNavigate.bind(this)}
         renderScene={this._renderScene}
-        direction={'vertical'} />
+        direction={'horizontal'} />
     )
   }
 }
