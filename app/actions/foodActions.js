@@ -1,8 +1,8 @@
 import * as types from '../constants/ActionTypes';
-import photoSearch from '../api/getData';
+import getData from '../api/getData';
 
 function getFoodWithAPI(dispatch) {  
-  photoSearch((data) => {
+  getData((data) => {
     dispatch({
       type: types.SEARCH_DONE,
       data: data,
