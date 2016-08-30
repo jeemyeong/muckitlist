@@ -8,26 +8,38 @@ import {
   TouchableOpacity
 } from 'react-native';
 import SwipeCards from 'react-native-swipe-cards';
+import * as foodActions from '../../actions/foodActions';  
 
 const detailPageRoute = {
   type: 'push',
   route: {
     key: 'detailpage',
-    title: 'DetailPage'
+    title: 'DetailPage',
+    post: {
+      id: null,
+      img: null,
+      tag: null
+    }
   }
 }
 
-let Card = React.createClass({
+class Card extends Component {
+  componentDidMount() {
+    console.log(this.props.itemInfo)
+    this.props._updateCurrentItem(this.props.itemInfo)
+  }
   render() {
     return (
-      <View style={styles.card}>
-        <TouchableOpacity onPress={() => this.props._handleNavigate(detailPageRoute)}>
-          <Image style={styles.thumbnail} source={{uri: this.props.image}} />
-        </TouchableOpacity>
+      <View>
+        <View style={styles.card}>
+          <TouchableOpacity onPress={() => {this.props._handleNavigate(detailPageRoute)}}>
+            <Image style={styles.thumbnail} source={{uri: this.props.itemInfo.img}} />
+          </TouchableOpacity>
+        </View>
       </View>
     )
   }
-})
+}
 
 let NoMoreCards = React.createClass({
   render() {
@@ -39,17 +51,6 @@ let NoMoreCards = React.createClass({
   }
 })
 
-const Cards = [
-  {name: '1', image: 'https://jeemyeongrails.s3.amazonaws.com/uploads/food/image/1/tokkijung.png'},
-  {name: '2', image: 'https://jeemyeongrails.s3.amazonaws.com/uploads/food/image/5/ddeok.PNG'},
-  {name: '3', image: 'https://jeemyeongrails.s3.amazonaws.com/uploads/food/image/3/2_sannakji.PNG'},
-  {name: '4', image: 'https://media.giphy.com/media/fFBmUMzFL5zRS/giphy.gif'},
-  {name: '5', image: 'https://media.giphy.com/media/oDLDbBgf0dkis/giphy.gif'},
-  {name: '6', image: 'https://media.giphy.com/media/7r4g8V2UkBUcw/giphy.gif'},
-  {name: '7', image: 'https://media.giphy.com/media/K6Q7ZCdLy8pCE/giphy.gif'},
-  {name: '8', image: 'https://media.giphy.com/media/hEwST9KM0UGti/giphy.gif'},
-  {name: '9', image: 'https://media.giphy.com/media/3oEduJbDtIuA2VrtS0/giphy.gif'},
-]
 
 const Cards2 = [
   {name: '10', image: 'https://media.giphy.com/media/12b3E4U9aSndxC/giphy.gif'},
@@ -60,20 +61,27 @@ const Cards2 = [
 
 export default React.createClass({
   getInitialState() {
+    console.log(this.props.data);
+    console.log("this.props");
+    console.log(this.props);
     return {
-      cards: Cards,
+      cards: this.props.data,
       outOfCards: false
     }
   },
   handleYup (card) {
     console.log("yup")
+    console.log(card)
   },
   handleNope (card) {
     console.log("nope")
+    console.log(card)
   },
   cardRemoved (index) {
     console.log(`The index is ${index}`);
-
+    console.log(this.state.cards[index+1])
+    this.props._updateCurrentItem(this.state.cards[index+1])
+    this.props._updateCurrentItemView(this.state.cards[index+1])
     let CARD_REFRESH_LIMIT = 3
 
     if (this.state.cards.length - index <= CARD_REFRESH_LIMIT + 1) {
@@ -97,7 +105,9 @@ export default React.createClass({
         <SwipeCards
           cards={this.state.cards}
           loop={false}
-          renderCard={(cardData) => <Card {...cardData} _handleNavigate={this.props._handleNavigate.bind(this)}/>}
+          renderCard={(cardData) => <Card itemInfo={cardData} 
+                                          _handleNavigate={this.props._handleNavigate.bind(this)} 
+                                          _updateCurrentItem={this.props._updateCurrentItem.bind(this)}/>}
           renderNoMoreCards={() => <NoMoreCards />}
           showYup={true}
           showNope={true}
@@ -124,7 +134,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     borderColor: 'grey',
     backgroundColor: 'transparent',
-    borderWidth: 1,
+    // borderWidth: 1,
     elevation: 1,
   },
   thumbnail: {
@@ -144,13 +154,6 @@ const styles = StyleSheet.create({
   }
 })
 
-const mainItem = ({mainItemImg}) => (
-  <View style={styles.mainItem}>
-    <Image 
-      source={{uri: mainItemImg}}
-      style={styles.mainItemImage}
-    />
-  </View>
-)
+
 
 

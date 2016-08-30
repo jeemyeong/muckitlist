@@ -17,7 +17,13 @@ const {
   Reducer: NavigationTabsReducer,
   CardStack: NavigationCardStack
 } = NavigationExperimental
-
+const detailPageRoute = {
+  type: 'push',
+  route: {
+    key: 'detailpage',
+    title: 'DetailPage',
+  }
+}
 class NavRoot extends Component {
   constructor (props) {
     super(props)
@@ -26,6 +32,15 @@ class NavRoot extends Component {
     this.state = {
       actions: bindActionCreators(foodActions, this.props.dispatch),
     }
+    console.log("this is detailPageRoute start");
+    console.log(detailPageRoute);
+    console.log("this is detailPageRoute start");
+    console.log("action constructor start");
+    console.log(this.state.actions);
+    console.log("action constructor end");
+    console.log("constructor props start");
+    console.log(this.props);
+    console.log("constructor props end");
   }
   renderLoadingView() {
     return (
@@ -42,14 +57,21 @@ class NavRoot extends Component {
     BackAndroid.removeEventListener('hardwareBackPress', this._handleBackAction)
   }
   _renderScene (props) {
+    console.log("rendering start")
+    console.log("rendering props start")
+    console.log(props);
+    console.log("rendering props end")
     const { route } = props.scene
     if (route.key ===  'home') {
       return <Home _handleNavigate={this._handleNavigate.bind(this)} 
-                   data={this.props.data} />
+                   _updateCurrentItem={this._updateCurrentItem.bind(this)} 
+                   data={this.props.data}
+                   currentItem={this.props.currentItem}/>
     }
     if (route.key ===  'detailpage') {
       return <DetailPage _handleNavigate={this._handleNavigate.bind(this)}  
-                         _goBack={this._handleBackAction.bind(this)}/>
+                         _goBack={this._handleBackAction.bind(this)}
+                         post={route.post}/>
     }
     if (route.key === 'writepost') {
       return <WritePost _goBack={this._handleBackAction.bind(this)}
@@ -80,10 +102,20 @@ class NavRoot extends Component {
         return false
     }
   }
+  _updateCurrentItem (itemInfo) {
+    console.log("itemInfo");
+    console.log(itemInfo);
+    this.state.actions.updateCurrentItem(itemInfo);
+  }
   render () {
+    console.log("navroot this.props");
+    console.log(this.props);
     if (!this.props.loaded) {
+      console.log("loading")
       return this.renderLoadingView();
     }
+    console.log("this is props after loading")
+    console.log(this.props)
     return (
       <NavigationCardStack
         style={{flex: 1}}

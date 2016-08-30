@@ -18,6 +18,30 @@ const writepost = {
   }
 }
 
+const detailPageRoute = {
+  type: 'push',
+  route: {
+    key: 'detailpage',
+    title: 'DetailPage',
+    post: {
+      id: null,
+      img: null,
+      tag: null
+    }
+  }
+}
+
+const ImageInListView = ({_handleNavigate, rowData}) => (
+  <View style={styles.itemView}>  
+    <TouchableOpacity onPress={() => {detailPageRoute.route.post.tag = rowData.tag;
+                                      detailPageRoute.route.post.img = rowData.img;
+                                      _handleNavigate(detailPageRoute)}}>
+      <Image style={styles.item} 
+             source={{uri: rowData.img}}/>
+    </TouchableOpacity>
+  </View>
+)
+
 const dataSource = new ListView.DataSource({
       rowHasChanged: (row1, row2) => row1 !== row2,
     })
@@ -42,12 +66,12 @@ const MyList = ({_handleNavigate, _goBack, data}) => (
                        tabBarUnderlineColor='#fc2b31'
                        tabBarActiveTextColor='#fc2b31'
                        tabBarInactiveTextColor='#ccc'>
-      <View tabLabel='지역별'>
+      <View tabLabel='지역별' style={{flex: 1}}>
         <ListView
           contentContainerStyle={styles.list}
           dataSource={dataSource.cloneWithRows(data)}
-          renderRow={(rowData) => <Image style={styles.item} 
-                                         source={{uri: rowData.image.image.url}}/>}
+          renderRow={(rowData) => <ImageInListView _handleNavigate={_handleNavigate}
+                                                   rowData={rowData}/>}
         />
       </View>
       <View tabLabel='북마크'>
@@ -76,7 +100,7 @@ const styles = StyleSheet.create({
       flexDirection: 'row',
       flexWrap: 'wrap'
   },
-  item: {
+  itemView: {
       backgroundColor: 'transparent',
       margin: 10,
       width: 100,
@@ -84,7 +108,11 @@ const styles = StyleSheet.create({
       borderColor: 'transparent',
       borderWidth: 1,
       borderRadius: 20,
-
+  },
+  item: {
+      width: 100,
+      height: 100,
+      borderRadius: 20,
   },
 })
 

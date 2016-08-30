@@ -18,7 +18,7 @@ const writepost = {
   }
 }
 
-const DetailPage = ({_handleNavigate, _goBack}) => (
+const DetailPage = ({_handleNavigate, _goBack, post}) => (
   <View style={styles.container}>
     <View style={styles.detailNavBar}>
       <TouchableOpacity onPress={() => _goBack()}>
@@ -26,7 +26,7 @@ const DetailPage = ({_handleNavigate, _goBack}) => (
                style={{width: 40,height: 40}}
                />
       </TouchableOpacity>
-      <Text style={styles.title}>토끼정</Text>
+      <Text style={styles.title}>DetailPage</Text>
       <TouchableOpacity onPress={() => _handleNavigate(writepost)}>
         <Image source={require('./../img/writeButton.png')} 
                style={{width: 50,height: 50}}
@@ -38,18 +38,19 @@ const DetailPage = ({_handleNavigate, _goBack}) => (
         activeDot={<View style={{backgroundColor: '#fff', width: 8, height: 8, borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3,}} />}
         >
       <View style={styles.slide} >
-        <Image style={styles.image} source={{uri: 'https://jeemyeongrails.s3.amazonaws.com/uploads/food/image/1/tokkijung.png'}} />
+        <Image style={styles.image} source={{uri: post.img}} />
       </View>
       <View style={styles.slide} >
-        <Image style={styles.image} source={{uri: 'https://jeemyeongrails.s3.amazonaws.com/uploads/food/image/5/ddeok.PNG'}} />
+        <Image style={styles.image} source={{uri: 'https://www.interbus.nu/lcms2/RESIZE/w270-h160-c270x160/img/no-img.jpg'}} />
       </View>
       <View style={styles.slide} >
-        <Image style={styles.image} source={{uri: 'https://jeemyeongrails.s3.amazonaws.com/uploads/food/image/3/2_sannakji.PNG'}} />
+        <Image style={styles.image} source={{uri: 'https://www.interbus.nu/lcms2/RESIZE/w270-h160-c270x160/img/no-img.jpg'}} />
       </View>
       <View style={styles.slide} >
-        <Image style={styles.image} source={{uri: 'https://jeemyeongrails.s3.amazonaws.com/uploads/food/image/4/1_pizza.PNG'}} />
+        <Image style={styles.image} source={{uri: 'https://www.interbus.nu/lcms2/RESIZE/w270-h160-c270x160/img/no-img.jpg'}} />
       </View>
     </Swiper>
+    <Text>{post.tag}</Text>
   </View>
 )
 

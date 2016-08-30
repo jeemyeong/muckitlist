@@ -1,4 +1,4 @@
-var REQUEST_URL = 'http://52.78.99.238/foods.json';
+var REQUEST_URL = 'http://52.78.99.238/foodstagrams.json';
 export default function getData(callback) {  
   fetch(REQUEST_URL)
   .then(function(response) {
