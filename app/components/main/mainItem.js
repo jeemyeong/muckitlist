@@ -32,7 +32,8 @@ class Card extends Component {
     return (
       <View>
         <View style={styles.card}>
-          <TouchableOpacity onPress={() => {this.props._handleNavigate(detailPageRoute)}}>
+          <TouchableOpacity onPress={() => {this.props._updateCurrentItem(this.props.itemInfo);
+            this.props._handleNavigate(detailPageRoute)}}>
             <Image style={styles.thumbnail} source={{uri: this.props.itemInfo.img}} />
           </TouchableOpacity>
         </View>

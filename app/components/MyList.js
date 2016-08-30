@@ -31,10 +31,9 @@ const detailPageRoute = {
   }
 }
 
-const ImageInListView = ({_handleNavigate, rowData}) => (
+const ImageInListView = ({_handleNavigate, _updateCurrentItem, rowData}) => (
   <View style={styles.itemView}>  
-    <TouchableOpacity onPress={() => {detailPageRoute.route.post.tag = rowData.tag;
-                                      detailPageRoute.route.post.img = rowData.img;
+    <TouchableOpacity onPress={() => {_updateCurrentItem(rowData);
                                       _handleNavigate(detailPageRoute)}}>
       <Image style={styles.item} 
              source={{uri: rowData.img}}/>
@@ -46,7 +45,7 @@ const dataSource = new ListView.DataSource({
       rowHasChanged: (row1, row2) => row1 !== row2,
     })
 
-const MyList = ({_handleNavigate, _goBack, data}) => (
+const MyList = ({_handleNavigate, _updateCurrentItem, _goBack, data}) => (
   <View style={styles.container}>
     <View style={styles.detailNavBar}>
       <TouchableOpacity onPress={() => _goBack()}>
@@ -71,6 +70,7 @@ const MyList = ({_handleNavigate, _goBack, data}) => (
           contentContainerStyle={styles.list}
           dataSource={dataSource.cloneWithRows(data)}
           renderRow={(rowData) => <ImageInListView _handleNavigate={_handleNavigate}
+                                                   _updateCurrentItem={_updateCurrentItem}
                                                    rowData={rowData}/>}
         />
       </View>

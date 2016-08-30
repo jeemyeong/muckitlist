@@ -22,6 +22,7 @@ const detailPageRoute = {
   route: {
     key: 'detailpage',
     title: 'DetailPage',
+
   }
 }
 class NavRoot extends Component {
@@ -62,6 +63,7 @@ class NavRoot extends Component {
     console.log(props);
     console.log("rendering props end")
     const { route } = props.scene
+    console.log(this.props.currentItem)
     if (route.key ===  'home') {
       return <Home _handleNavigate={this._handleNavigate.bind(this)} 
                    _updateCurrentItem={this._updateCurrentItem.bind(this)} 
@@ -71,7 +73,7 @@ class NavRoot extends Component {
     if (route.key ===  'detailpage') {
       return <DetailPage _handleNavigate={this._handleNavigate.bind(this)}  
                          _goBack={this._handleBackAction.bind(this)}
-                         post={route.post}/>
+                         currentItem={this.props.currentItem}/>
     }
     if (route.key === 'writepost') {
       return <WritePost _goBack={this._handleBackAction.bind(this)}
@@ -79,6 +81,7 @@ class NavRoot extends Component {
     }
     if (route.key === 'mylist') {
       return <MyList _handleNavigate={this._handleNavigate.bind(this)}  
+                     _updateCurrentItem={this._updateCurrentItem.bind(this)} 
                      _goBack={this._handleBackAction.bind(this)}
                      data={this.props.data} />
     }
