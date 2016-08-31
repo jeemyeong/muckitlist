@@ -139,6 +139,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     marginLeft: 30,
     marginTop: 30,
+    flexDirection: 'row',
   },
   mainReturnButton: {
     width: 80,
