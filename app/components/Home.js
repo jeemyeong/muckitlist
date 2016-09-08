@@ -9,6 +9,7 @@ import {
   NavigationExperimental,
   ActivityIndicator
 } from 'react-native'
+import { connect } from 'react-redux';
 
 import MainItem from './main/mainItem.js'
 
@@ -22,21 +23,24 @@ const myListRoute = {
 class Home extends Component {
   constructor (props) {
     super(props)
-    this.state = {
-      currentItem: this.props.currentItem
-    }
+
+    this.props._updateMainItem(this.props.data[0])
+    // this.state = {
+    //   currentItem: this.props.currentItem
+    // }
   }
 
-  _updateCurrentItemView(itemInfo){
-    this.state.currentItem = itemInfo;
-    console.log("itemInfo");
-    console.log(itemInfo);
-    console.log("this.state");
-    console.log(this.state);
-  }
+  // _updateCurrentItemView(itemInfo){
+  //   this.state.currentItem = itemInfo;
+  //   console.log("itemInfo");
+  //   console.log(itemInfo);
+  //   console.log("this.state");
+  //   console.log(this.state);
+  // }
 
   render () {
-    console.log(this.props.currentItem);
+    console.log("this.props.mainItem");
+    console.log(this.props.mainItem);
     return (
       <View style={styles.container}>
         <View style={styles.navBar}>
@@ -54,12 +58,14 @@ class Home extends Component {
         </View>
         <MainItem _handleNavigate={this.props._handleNavigate.bind(this)} 
                   _updateCurrentItem={this.props._updateCurrentItem.bind(this)} 
-                  _updateCurrentItemView={this._updateCurrentItemView.bind(this)} 
+                  _updateMainItem={this.props._updateMainItem.bind(this)} 
+                  // _updateCurrentItemView={this._updateCurrentItemView.bind(this)} 
                   data={this.props.data}
+                  mainItem={this.props.mainItem}
                   style={{flex: 1}} />
         <View style={styles.mainInfo}>
           <View style={{flex: 1}}>
-            <TextInput value={this.state.currentItem.tag}
+            <TextInput value={this.props.mainItem.tag}
                        style={styles.titleText}/>
           </View>
           <Text style={styles.rating}>4.3</Text>
@@ -147,4 +153,14 @@ const styles = StyleSheet.create({
   },
 })
 
+let mapStateToProps = (state) => {
+  console.log("@@@@@@@@@@@@@@@@");
+  console.log(state);
+    return {
+        mainItem: state.foodReducer.mainItem
+    };
+}
+ 
+Home = connect(mapStateToProps)(Home);
+ 
 export default Home

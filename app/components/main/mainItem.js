@@ -26,7 +26,7 @@ const detailPageRoute = {
 class Card extends Component {
   componentDidMount() {
     console.log(this.props.itemInfo)
-    this.props._updateCurrentItem(this.props.itemInfo)
+    this.props._updateMainItem(this.props.itemInfo)
   }
   render() {
     return (
@@ -60,29 +60,33 @@ const Cards2 = [
   {name: '13', image: 'https://media.giphy.com/media/OVHFny0I7njuU/giphy.gif'},
 ]
 
-export default React.createClass({
-  getInitialState() {
+export default class mainItem extends Component {
+  constructor(props) {
+    super(props)
     console.log(this.props.data);
     console.log("this.props");
     console.log(this.props);
-    return {
+    this.state = {
       cards: this.props.data,
       outOfCards: false
     }
-  },
+    console.log(this.state)
+    this.props._updateMainItem(this.state.cards[0])
+    this.cardRemoved.bind(this)
+  }
   handleYup (card) {
     console.log("yup")
     console.log(card)
-  },
+  }
   handleNope (card) {
     console.log("nope")
     console.log(card)
-  },
+  }
   cardRemoved (index) {
+    console.log(this.state)
     console.log(`The index is ${index}`);
     console.log(this.state.cards[index+1])
-    this.props._updateCurrentItem(this.state.cards[index+1])
-    this.props._updateCurrentItemView(this.state.cards[index+1])
+    this.props._updateMainItem(this.state.cards[this.props.mainItem.id])
     let CARD_REFRESH_LIMIT = 3
 
     if (this.state.cards.length - index <= CARD_REFRESH_LIMIT + 1) {
@@ -99,28 +103,31 @@ export default React.createClass({
 
     }
 
-  },
+  }
   render() {
+    console.log("this.state")
+    console.log(this.state)
     return (
       <View style={styles.mainItem}>
         <SwipeCards
-          cards={this.state.cards}
+          cards={[this.props.mainItem,this.props.mainItem]}
           loop={false}
           renderCard={(cardData) => <Card itemInfo={cardData} 
                                           _handleNavigate={this.props._handleNavigate.bind(this)} 
-                                          _updateCurrentItem={this.props._updateCurrentItem.bind(this)}/>}
+                                          _updateCurrentItem={this.props._updateCurrentItem.bind(this)}
+                                          _updateMainItem={this.props._updateMainItem.bind(this)}/>}
           renderNoMoreCards={() => <NoMoreCards />}
           showYup={true}
           showNope={true}
           containerStyle={{backgroundColor: 'transparent'}}
           handleYup={this.handleYup}
           handleNope={this.handleNope}
-          cardRemoved={this.cardRemoved}
+          cardRemoved={this.cardRemoved.bind(this)}
         />
       </View>
     )
   }
-})
+}
 
 const styles = StyleSheet.create({
   mainItem: {

@@ -50,9 +50,11 @@ class NavRoot extends Component {
       style={{flex: 1, justifyContent: 'center',}}/>
     );
   }
+  componentWillMount () {
+    this.state.actions.getFood();
+  }
   componentDidMount () {
     BackAndroid.addEventListener('hardwareBackPress', this._handleBackAction)
-    this.state.actions.getFood();
   }
   componentWillUnmount () {
     BackAndroid.removeEventListener('hardwareBackPress', this._handleBackAction)
@@ -67,6 +69,7 @@ class NavRoot extends Component {
     if (route.key ===  'home') {
       return <Home _handleNavigate={this._handleNavigate.bind(this)} 
                    _updateCurrentItem={this._updateCurrentItem.bind(this)} 
+                   _updateMainItem={this._updateMainItem.bind(this)} 
                    data={this.props.data}
                    currentItem={this.props.currentItem}/>
     }
@@ -109,6 +112,11 @@ class NavRoot extends Component {
     console.log("itemInfo");
     console.log(itemInfo);
     this.state.actions.updateCurrentItem(itemInfo);
+  }
+  _updateMainItem (itemInfo) {
+    console.log("itemInfo");
+    console.log(itemInfo);
+    this.state.actions.updateMainItem(itemInfo);
   }
   render () {
     console.log("navroot this.props");
